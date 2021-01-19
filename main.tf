@@ -36,6 +36,8 @@ resource "null_resource" "copy_execute" {
    provisioner "remote-exec" {
     inline = [
       "sudo apt update -y",
+      "sudo apt install software-properties-common -y" ,
+      "sudo apt-add-repository --yes --update ppa:ansible/ansible -y",      
       "sudo apt install ansible -y",
       "ansible-playbook  '/tmp/tomcat.yml'"
 
@@ -63,8 +65,8 @@ resource "aws_security_group" "webSG" {
   }
 
   ingress {
-    from_port   = 8080
-    to_port     = 8080  
+    from_port   = 80
+    to_port     = 80  
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
