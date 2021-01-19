@@ -1,0 +1,20 @@
+---
+- name: deploy tomcat8 based application game of life
+  become: yes
+  hosts: localhost
+  tasks:
+    - name: install packages
+      apt: name={{ item }} state=present
+      with_items:
+        - apache2
+        - mysql-server
+        - php
+        - php-mysql
+        - libapache2-mod-php
+        - php-xml
+        - php-mbstring
+    - name: Download mediawiki
+      unarchive:
+        src: https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.1.tar.gz
+        dest: /var/www/html/
+        remote_src: True
