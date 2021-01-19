@@ -1,5 +1,5 @@
 ---
-- name: deploy tomcat8 based application game of life
+- name: deploy mediawiki based application in apache2
   become: yes
   hosts: localhost
   tasks:
